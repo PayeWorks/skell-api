@@ -1,0 +1,54 @@
+daemonize yes
+
+pidfile ./pid/redis.pid
+
+bind 127.0.0.1
+port 10000
+
+timeout 300
+
+loglevel warning
+logfile ./log/redis.log
+
+databases 16
+
+save 900 1
+save 300 1000
+save 60 10000
+rdbcompression yes
+dbfilename dump.rdb
+dir ./db
+
+slave-serve-stale-data yes
+
+# uncomment for production servers
+# rename-command FLUSHDB ""
+# rename-command FLUSHALL ""
+
+rename-command CONFIG   QU2U6ECHAZUF8PR9STUBAP4ABREMEB8A
+rename-command DEBUG    THUC8ETE9WASTEP2BRUCHA2EYANEYE4H
+rename-command SHUTDOWN 5U53SETRASTABRU3WUWEVA7ASWUWRE3E
+rename-command MONITOR  FAJEJEN6D6R8VUPR9SP3PHU9UZESPEDA
+rename-command SLAVEOF  PU3596U8E2EXUKUS3ETU7UFEHUBRUFUH
+rename-command CLIENT   SABANAYERAFRARUPRASEPHUPHE8EHABA
+
+maxmemory-policy noeviction
+
+appendonly no
+# appendfilename appendonly.aof
+appendfsync everysec
+no-appendfsync-on-rewrite no
+auto-aof-rewrite-percentage 100
+auto-aof-rewrite-min-size 64mb
+
+slowlog-log-slower-than 10000
+slowlog-max-len 16
+
+# hash-max-zipmap-entries 512
+# hash-max-zipmap-value 64
+list-max-ziplist-entries 512
+list-max-ziplist-value 64
+set-max-intset-entries 512
+zset-max-ziplist-entries 128
+zset-max-ziplist-value 64
+activerehashing yes

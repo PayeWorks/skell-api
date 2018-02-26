@@ -1,0 +1,17 @@
+rack -v 1.6.5
+cuba -v 3.3.0
+scrivener -v 1.0.0
+ohm-contrib -v 3.0.0
+rack-cors -v 0.4.0
+cuba-contrib -v 3.1.0
+rack-parser -v 0.7.0
+unicorn -v 5.2.0
+rack-contrib -v 1.4.0
+ost -v 1.0.0
+sequel -v 4.42.0
+pg -v 0.19.0
+rep -v 1.0.1
+lupa -v 1.0.1
+shield -v 2.1.1
+multi_json -v 1.12.1
+airbrake -v 5.7.0

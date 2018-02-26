@@ -1,0 +1,60 @@
+require 'rake/testtask'
+
+task default: 'test:all'
+
+namespace :test do
+
+  Rake::TestTask.new(:all) do |t|
+    t.pattern = "test/**/*_spec.rb"
+    t.verbose = true
+  end
+
+  Rake::TestTask.new(:models) do |t|
+    t.pattern = "test/models/**/*_spec.rb"
+    t.verbose = true
+  end
+
+  Rake::TestTask.new(:routes) do |t|
+    t.pattern = "test/routes/**/*_spec.rb"
+    t.verbose = true
+  end
+
+  Rake::TestTask.new(:libs) do |t|
+    t.pattern = "test/libs/**/*_spec.rb"
+    t.verbose = true
+  end
+
+end
+
+desc "Run benchs tests for all"
+task bench: 'bench:all'
+
+namespace :bench do
+
+  Rake::TestTask.new(:all) do |t|
+    t.pattern = "test/**/*_bench.rb"
+    t.verbose = true
+  end
+
+  Rake::TestTask.new(:routes) do |t|
+    t.pattern = "test/routes/**/*_bench.rb"
+    t.verbose = true
+  end
+end
+
+namespace :db do
+  desc 'Run migrations'
+  task :migrate, [:version] do |t, args|
+    require './app'
+
+    Sequel.extension :migration
+
+    if args[:version]
+      puts "Migrating to version #{args[:version]}"
+      Sequel::Migrator.run($db, 'db/migrations', target: args[:version].to_i)
+    else
+      puts 'Migrating to latest'
+      Sequel::Migrator.run($db, 'db/migrations')
+    end
+  end
+end
